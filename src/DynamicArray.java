@@ -18,7 +18,7 @@ public class DynamicArray {
 		secondArray = new int[capacity * 2];
 	}
 
-	public void add(int newNumber) {
+	public void push(int newNumber) {
 		if (nextIndexToInsert < firstArray.length ) {
 			firstArray[nextIndexToInsert] = newNumber;
 			nextIndexToInsert++;
@@ -28,6 +28,15 @@ public class DynamicArray {
 			nextIndexToInsert++;
 			rewriteArray();
 		}
+	}
+
+	public int pop () {
+		int valueOflastElement = nextIndexToInsert - 1;
+		nextIndexToInsert--;
+		if(nextIndexToInsert < firstArray.length) {
+			secondArray = null;
+		}
+		return valueOflastElement;
 	}
 
 

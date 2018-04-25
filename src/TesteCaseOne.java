@@ -7,22 +7,14 @@ import org.junit.Test;
 
 public class TesteCaseOne {
 	
-	private String makeMessage (int expected, int acctual) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Tested value is ");
-		sb.append(expected);
-		sb.append("Acctual value is: ");
-		sb.append(acctual);
-		return sb.toString();
-	}
 
 	@Test
-	public void test() {
+	public void pushTest() {
 		DynamicArray testedObject = new DynamicArray();
 		List <Integer> mock = new ArrayList <Integer> ();
 		for (int i = 0; i < 1000 ; i++) {
 			mock.add(i);
-			testedObject.add(i);
+			testedObject.push(i);
 		}
 		
 		for (int i = 0; i < mock.size(); i++) {
@@ -32,4 +24,24 @@ public class TesteCaseOne {
 		}
 	}
 
+	@Test
+	public void popTest () {
+		DynamicArray testedObject = new DynamicArray();
+		List <Integer> mock = new ArrayList <Integer> ();
+		for (int i = 0; i < 1000 ; i++) {
+			mock.add(i);
+			testedObject.push(i);
+		}
+
+		for (int i = 0; i < 500; i++) {
+			mock.remove(mock.size() -1);
+			testedObject.pop();
+		}
+
+		for (int i = 0; i < mock.size(); i++) {
+			int mockVal = mock.get(i);
+			int tObjVal = testedObject.get(i);
+			assertEquals(mockVal , tObjVal);
+		}
+	}
 }

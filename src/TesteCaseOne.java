@@ -20,7 +20,7 @@ public class TesteCaseOne {
 	public void test() {
 		DynamicArray testedObject = new DynamicArray();
 		List <Integer> mock = new ArrayList <Integer> ();
-		for (int i = 0; i < 20 ; i++) {
+		for (int i = 0; i < 1000 ; i++) {
 			mock.add(i);
 			testedObject.add(i);
 		}

@@ -24,11 +24,12 @@ public class DynamicArray {
 			nextIndexToInsert++;
 			
 		} else {
-			rewriteArray();
 			secondArray[nextIndexToInsert] = newNumber;
 			nextIndexToInsert++;
+			rewriteArray();
 		}
 	}
+
 
 	private void rewriteArray() {
 			secondArray[nextIndexToCopy] = firstArray[nextIndexToCopy];
@@ -42,6 +43,8 @@ public class DynamicArray {
 			nextIndexToCopy = 0;
 			}
 	}
+
+
 
 	public int get(int index) {
 

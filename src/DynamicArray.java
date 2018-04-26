@@ -5,17 +5,16 @@ public class DynamicArray {
 
 	private int[] firstArray;
 	private int[] secondArray;
-
-	private int capacity;
+	private boolean isInTwoArrayState;
 	private int nextIndexToInsert;
 	private int nextIndexToCopy;
 
 	public DynamicArray() {
 		nextIndexToInsert = 0;
 		nextIndexToCopy = 0;
-		capacity = defaultInitCapacity;
-		firstArray = new int[capacity];
-		secondArray = new int[capacity * 2];
+		firstArray = new int[defaultInitCapacity];
+		secondArray = null;
+		isInTwoArrayState = false;
 	}
 
 	public void push(int newNumber) {
@@ -24,6 +23,10 @@ public class DynamicArray {
 			nextIndexToInsert++;
 			
 		} else {
+			if (!isInTwoArrayState) {
+			secondArray = new int[firstArray.length * 2];
+			isInTwoArrayState = true;
+			}
 			secondArray[nextIndexToInsert] = newNumber;
 			nextIndexToInsert++;
 			rewriteArray();
@@ -35,6 +38,7 @@ public class DynamicArray {
 		nextIndexToInsert--;
 		if(nextIndexToInsert < firstArray.length) {
 			secondArray = null;
+			isInTwoArrayState = false;
 		}
 		return valueOflastElement;
 	}
@@ -46,8 +50,7 @@ public class DynamicArray {
 			
 			if (nextIndexToCopy >= firstArray.length) {
 			firstArray = secondArray;
-			capacity *= 2;
-			secondArray = new int[capacity * 2];
+			secondArray = new int[firstArray.length * 2];
 			secondArray[nextIndexToCopy] = firstArray[nextIndexToCopy];
 			nextIndexToCopy = 0;
 			}
